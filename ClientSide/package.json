@@ -1,0 +1,12 @@
+{
+  "version": "0.0.0",
+  "name": "Gardians-angular",
+  "description": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.6.1"
+  },
+  "scripts": {
+    "start": "http-server -a 0.0.0.0 -p 8000"
+  }
+}
