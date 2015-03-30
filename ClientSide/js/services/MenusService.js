@@ -1,21 +1,35 @@
 app.service('MenusService', function() {
-  var btnList = [];
+  var sideBtnList = [];
+  var mainBtnList = [];
+  var addSideBtn = function(name, btn,viewLink,controller) {
+    var newObj;
+    newObj.name = name;
+    newObj.btn = btn;
+    newObj.controller = controller;
+    newObj.view = viewLink;
+    sideBtnList.push(newObj);
+  }
 
-  var addBtn = function(name, viewLink,controller) {
+  var getSideBtn = function(){
+      return sideBtnList;
+  }
+
+  var addMainBtn = function(name,btn) {
     var newObj;
     newObj.name = name;
     newObj.controller = controller;
     newObj.view = viewLink;
-    btnList.push(newObj);
+    mainBtnList.push(newObj);
   }
 
-  var getBtn = function(){
-      return btnList;
+  var getMainBtn = function(){
+      return mainBtnList;
   }
-
   return {
-    addBtn: addBtn,
-    getBtn: getBtn
+    addSideBtn: addSideBtn,
+    getSideBtn: getSideBtn,
+    addMainBtn: addMainBtn,
+    getMainBtn: getMainBtn
   };
 
 });

@@ -14,10 +14,10 @@ GuardiansApp.controller("adminCtl", ['$scope',$http,userSerivce, function($scope
   };
   $scope.approveContr = function(isApproverd ,contr){
   };
-  $scope.approveBoard = function(isApproverd){
+  $scope.approveBoard = function(isApproverd){//TODO:need to send something more?
 
   };
 
-  $scope.startAssign = function(){};
+  $scope.startAssign = function(){}; //TODO: what to send
   
 }]);

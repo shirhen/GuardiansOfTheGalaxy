@@ -7,8 +7,6 @@ GuardiansApp.controller("shiftCtl", ['$scope',$http, userService,function($scope
 
   };
   $scope.getAllShifts = function(){
-  	1
-
-
+  	
   };
 }]);
