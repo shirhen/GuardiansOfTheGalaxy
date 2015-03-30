@@ -1,4 +1,4 @@
-app.service('constraintService', function($http) {
+GuardiansApp.service('constraintService', function($http) {
 
   var addConstraint = function(constraint) {
     //$http

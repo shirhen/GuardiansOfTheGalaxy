@@ -1,4 +1,4 @@
-app.service('shiftService', function($http) {
+GuardiansApp.service('shiftService', function($http) {
 
   var getShiftsByUser = function(exemption) {
     //$http

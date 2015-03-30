@@ -1,4 +1,4 @@
-app.service('exemptionService', function($http) {
+GuardiansApp.service('exemptionService', function($http) {
 
   var addExemption = function(exemption) {
     //$http
