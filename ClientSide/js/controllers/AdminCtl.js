@@ -1,4 +1,5 @@
-GuardiansApp.controller("adminCtl", ['$scope',$http,userSerivce, function($scope) {
+GuardiansApp.controller("adminCtl", ['$scope','userSerivce','constraintSerivce','exemptionSerivce','shiftSerivce',
+function($scope,$http,userSerivce,constraintSerivce,exemptionSerivce,shiftSerivce) {
   var usr = userSerivce.getUser();
   $scope.getAllContr = function(){
   		//$http
@@ -14,10 +15,8 @@ GuardiansApp.controller("adminCtl", ['$scope',$http,userSerivce, function($scope
   };
   $scope.approveContr = function(isApproverd ,contr){
   };
-  $scope.approveBoard = function(isApproverd){//TODO:need to send something more?
+  $scope.approveBoard = function(isApproverd){
 
   };
-
-  $scope.startAssign = function(){}; //TODO: what to send
-  
+  $scope.startAssign = function(){};  
 }]);

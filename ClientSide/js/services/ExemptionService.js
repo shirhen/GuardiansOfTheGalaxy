@@ -15,13 +15,16 @@ GuardiansApp.service('exemptionService', function($http) {
   var delExemption = function(exemption){
 
   };
+  $scope.approveExemption = function(isApproverd ,exemp){
 
+  };
   return {
     addExemption:addExemption,
     getExemption:getExemptionsByUser,
     getAllExemption:getAllExemptions,
     editExemption:editExemption,
-    delExemption:delExemption
+    delExemption:delExemption,
+    approveExemp:approveExemption
   };
 
 });
