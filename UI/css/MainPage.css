@@ -1,0 +1,10 @@
+div {
+    font-family: Tahoma;
+    text-align: right;
+}
+
+#header {
+    background-color: #00a7d9;
+    height: 90px;
+    padding-top: 1px;
+}

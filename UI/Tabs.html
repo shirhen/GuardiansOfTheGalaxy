@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+        <meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<title>Tab Styles Inspiration</title>
+		<meta name="description" content="Tab Styles Inspiration: A small collection of styles for tabs" />
+		<meta name="keywords" content="tabs, inspiration, web design, css, modern, effects, svg" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize-tabs.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo-tabs.css" />
+		<link rel="stylesheet" type="text/css" href="css/tabs.css" />
+		<link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
+  		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body>
+		<svg class="hidden">
+			<defs>
+				<path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
+			</defs>
+		</svg>
+		<div class="container">
+			<section>
+				<div class="tabs tabs-style-underline">
+					<nav>
+                        <div id="Logo">
+                            <h2>מערכת תורנויות</h2>
+                        </div>
+						<ul>
+							<li><a href="#section-underline-1" class="icon icon-gift"><span>פטורים</span></a></li>
+							<li><a href="#section-underline-2" class="icon icon-plane"><span>אילוצים</span></a></li>
+							<li><a href="#section-underline-3" class="icon icon-date"><span>תורנויות</span></a></li>
+						</ul>
+					</nav>
+					<div class="content-wrap">
+						<section id="section-underline-1">
+                            <p>פטורים</p>
+                        </section>
+						<section id="section-underline-2">
+                            <p>אילוצים</p>
+                        </section>
+						<section id="section-underline-3">
+                            <p>תורנויות</p>
+                        </section>
+					</div><!-- /content -->
+				</div><!-- /tabs -->
+			</section>
+		</div><!-- /container -->
+        
+        <!-- Side Menu -->
+        <div class="sideMenu"></div>
+        
+		<script src="js/cbpFWTabs.js"></script>
+		<script>
+			(function() {
+
+				[].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+					new CBPFWTabs( el );
+				});
+
+			})();
+		</script>
+	</body>
+</html>
