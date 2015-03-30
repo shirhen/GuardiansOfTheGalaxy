@@ -1,31 +1,31 @@
-GuardiansApp.controller("mainMenuCtl", ['$scope','$location', 'menusService','userService', 
-function($scope,$locationProvider,MenusService,userService) {
+GuardiansApp.controller("mainMenuCtl", ['$scope','$window', 'menusService','userService', 
+function($scope,$window,MenusService,userService) {
   
   $scope.constraintBtn = function(){
-		MenusService.addSideBtn("הזן אילוץ", constraintCtl);
-    MenusService.addSideBtn("צפה באילוצים", constraintCtl);
-    $location.path('/constraint');
+		MenusService.addSideBtn("הזן אילוץ");
+    MenusService.addSideBtn("צפה באילוצים");
+    $window.location.href = '/constraints';
   };
   $scope.shiftBtn = function(){
-    MenusService.addSideBtn("לוח תורנויות", shiftCtl);
+    MenusService.addSideBtn("לוח תורנויות");
   };
   $scope.exemptionBtn = function(){
-  	MenusService.addSideBtn("הזן פטור", exemptionCtl);
-    MenusService.addSideBtn("צפה בפטורים", exemptionCtl);
+  	MenusService.addSideBtn("הזן פטור");
+    MenusService.addSideBtn("צפה בפטורים");
   };
 
   $scope.getMainBtns = function(){
     MenusService.cleanMainBtns();
-    MenusService.addMainBtn("תורנויות",shiftBtn);
-    MenusService.addMainBtn("אילוצים",exemptionBtn);
-    MenusService.addMainBtn("פטורים",constraintBtn);
+    MenusService.addMainBtn("תורנויות");
+    MenusService.addMainBtn("אילוצים");
+    MenusService.addMainBtn("פטורים");
     return MenusService.getMainBtns();
   };
   $scope.getAdminMainBtns = function(){
     MenusService.cleanMainBtns();
-    MenusService.addMainBtn("תורנויות",shiftBtn);
-    MenusService.addMainBtn("אילוצים",exemptionBtn);
-    MenusService.addMainBtn("פטורים",constraintBtn);
+    MenusService.addMainBtn("תורנויות");
+    MenusService.addMainBtn("אילוצים");
+    MenusService.addMainBtn("פטורים");
     return MenusService.getMainBtns();
   };//MenusService.getMainBtns();
 

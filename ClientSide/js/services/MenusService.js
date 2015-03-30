@@ -2,7 +2,7 @@ GuardiansApp.service('menusService', function() {
   var sideBtnList = [];
   var mainBtnList = [];
   var addSideBtn = function(name, btn,viewLink,controller) {
-    var newObj;
+    var newObj = {};
     newObj.name = name;
     newObj.btn = btn;
     newObj.controller = controller;
@@ -15,7 +15,7 @@ GuardiansApp.service('menusService', function() {
   }
 
   var addMainBtn = function(name,btn) {
-    var newObj;
+    var newObj = {};
     newObj.name = name;
     newObj.controller = controller;
     newObj.view = viewLink;

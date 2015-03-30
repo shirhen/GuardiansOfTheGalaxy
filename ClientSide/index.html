@@ -19,12 +19,12 @@
               <div id="Logo">
                   <h2>מערכת תורנויות</h2>
               </div>
-            <ul ng-if="getIfAdmin()">
+            <ul ng-if="!getIfAdmin()">
               <li>
-                <a href="#section-underline-1" class="icon icon-gift" ng-click="constraintBtn()"><span>פטורים</span></a>
+                <a href="#section-underline-1" class="icon icon-gift" ng-click="exemptionBtn()"><span>פטורים</span></a>
               </li>
               <li>
-                <a href="#section-underline-2" class="icon icon-plane"><span>אילוצים</span></a>
+                <a href="#section-underline-2" class="icon icon-plane" ng-click="constraintBtn()"><span>אילוצים</span></a>
               </li>
               <li>
                 <a href="#section-underline-3" class="icon icon-date"><span>תורנויות</span></a>
