@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardiansOfTheGalaxy.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,18 +9,21 @@ namespace GuardiansOfTheGalaxy
 {
     class Assigner
     {
-        SortedList<int, Shift> shifts;
-        SortedList<int, SortedList<SoldierID, Soldier>> potentialPerShift;
-        SortedList<int, SortedList<SoldierID, Soldier>> assignment;
-        SortedList<SoldierID, Soldier> potential;
-        
+        SortedList<int, workShift> shifts;
+        SortedList<int, SortedList<worker, worker>> potentialPerShift;
+        SortedList<int, SortedList<worker, worker>> assignment;
+        SortedList<worker, worker> potential;
 
-        public bool canTakeShift( Soldier soldier, Shift shift ){ 
-		    if(soldier.numberOfShifts + 1 > soldier.maxShifts){	// more than allowed amount of shifts
+
+        public bool canTakeShift(worker worker, workShift shift)
+        {
+            if (worker.numberOfShifts + 1 > worker.maxShifts)
+            {	// more than allowed amount of shifts
 			    return false;
 		    }
 
-		    if(soldier.numberOfShifts + 1 > soldier.maxShifts){	// more than allowed amount of shifts
+            if (worker.numberOfShifts + 1 > worker.maxShifts)
+            {	// more than allowed amount of shifts
 			    return false;
 		    }
 
@@ -43,16 +47,17 @@ namespace GuardiansOfTheGalaxy
                 return false;
 		    }
 
-            Soldier temp = potentialPerShift.ElementAt(shift).Value.ElementAt(soldierNum).Value;
+            worker temp = potentialPerShift.ElementAt(shift).Value.ElementAt(soldierNum).Value;
 		    if( canTakeShift( temp , shifts[shift]) ){
-			    assignment[shift].Add();
-			    potentialPerShift[shift].allocations--;
-			    if( findBoard(potentialPerShift, assignment, shift, soldier +1) )
-				    return 1;
-			    assignment[shift].remove(i.data());
-			    potentialPerShift[shift].allocations++;
+                assignment.ElementAt(shift).Value.Add(temp, temp);
+			    shifts[shift].allocations--;
+                if (assign( shift, soldierNum + 1))
+				    return true;
+			    assignment.ElementAt(shift).Value.Remove(temp);
+                shifts[shift].allocations++;
 		    }
-		    return findBoard(potentialPerShift,assignment, shift, soldier+1);
+            return assign(shift, soldierNum + 1);
+
 	    }
 
     }

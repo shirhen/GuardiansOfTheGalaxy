@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace GuardiansOfTheGalaxy.AutoAssigner
+namespace GuardiansOfTheGalaxy
 {
     public class WorkerComparer : IComparer<worker>
     {
