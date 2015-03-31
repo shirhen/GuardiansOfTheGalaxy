@@ -28,8 +28,8 @@
 
   </head>
 
-  <body>
-    <div id="mainMenu" ng-controller="mainMenuCtl">
+  <body onload="setFirstTab">
+    <div id="mainMenu" ng-controller="mainMenuCtl" class="container">
       <div class="tabs tabs-style-underline">
           <nav>
               <div id="Logo">
@@ -59,9 +59,13 @@
             </ul>
           </nav>
       </div>
-      <ul style="float:right">
-        <li ng-repeat="sideM in sBtns"><a hrfe="{{sideM.link}}"><span>{{sideM.name}}</span></a></li>
-      </ul>
+      <div id="sideMenu">
+        <section>
+        <ul style="float:right">
+          <li ng-repeat="sideM in sBtns"><a hrfe="{{sideM.link}}"><span>{{sideM.name}}</span></a></li>
+        </ul>
+      </section>
+      </div>
     </div>
 <!-- in the future
     <div id="sideMenu" ng-controller="sideMenuCtl">
