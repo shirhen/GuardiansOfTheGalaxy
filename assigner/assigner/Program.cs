@@ -10,7 +10,6 @@ namespace assigner
     {
         static void Main(string[] args)
         {
-
         }
     }
 }

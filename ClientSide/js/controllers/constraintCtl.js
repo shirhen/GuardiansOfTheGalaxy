@@ -1,6 +1,6 @@
-GuardiansApp.controller("constraintCtl", ['$scope','userSerivce','constraintService', 
-function($scope,userSerivce,constraintService) {
-  var usr = userSerivce.getUser();
+GuardiansApp.controller("constraintCtl", ['$scope','userService','constraintService', 
+function($scope,userService,constraintService) {
+  var usr = userService.getUser();
   var contrSer = constraintService;
   $scope.addContr = function(contr){
   		return contrSer.addContraint(contr);

@@ -1,31 +1,37 @@
-GuardiansApp.controller("mainMenuCtl", ['$scope','$location', 'menusService','userService', 
-function($scope,$locationProvider,MenusService,userService) {
+GuardiansApp.controller("mainMenuCtl", ['$scope','$window', 'menusService','userService', '$location',
+function($scope,$window,MenusService,userService,$location) {
   
   $scope.constraintBtn = function(){
-		MenusService.addSideBtn("הזן אילוץ", constraintCtl);
-    MenusService.addSideBtn("צפה באילוצים", constraintCtl);
-    $location.path('/constraint');
+    MenusService.clearSideBtn();
+		MenusService.addSideBtn("הזן אילוץ");
+    MenusService.addSideBtn("צפה באילוצים");
+    //$location.path() == '/constraints';
+    //$location.replace();
   };
   $scope.shiftBtn = function(){
-    MenusService.addSideBtn("לוח תורנויות", shiftCtl);
+    MenusService.clearSideBtn();
+    MenusService.addSideBtn("לוח תורנויות");
+    //$window.location.href = '/shift';
   };
   $scope.exemptionBtn = function(){
-  	MenusService.addSideBtn("הזן פטור", exemptionCtl);
-    MenusService.addSideBtn("צפה בפטורים", exemptionCtl);
+    MenusService.clearSideBtn();
+  	MenusService.addSideBtn("הזן פטור");
+    MenusService.addSideBtn("צפה בפטורים");
+    //$window.location.href = '/exemptions';
   };
 
   $scope.getMainBtns = function(){
-    MenusService.cleanMainBtns();
-    MenusService.addMainBtn("תורנויות",shiftBtn);
-    MenusService.addMainBtn("אילוצים",exemptionBtn);
-    MenusService.addMainBtn("פטורים",constraintBtn);
+    MenusService.clearMainBtn();
+    MenusService.addMainBtn("תורנויות");
+    MenusService.addMainBtn("אילוצים");
+    MenusService.addMainBtn("פטורים");
     return MenusService.getMainBtns();
   };
   $scope.getAdminMainBtns = function(){
-    MenusService.cleanMainBtns();
-    MenusService.addMainBtn("תורנויות",shiftBtn);
-    MenusService.addMainBtn("אילוצים",exemptionBtn);
-    MenusService.addMainBtn("פטורים",constraintBtn);
+    MenusService.clearMainBtn();
+    MenusService.addMainBtn("תורנויות");
+    MenusService.addMainBtn("אילוצים");
+    MenusService.addMainBtn("פטורים");
     return MenusService.getMainBtns();
   };//MenusService.getMainBtns();
 

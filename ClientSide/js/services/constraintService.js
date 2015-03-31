@@ -15,7 +15,7 @@ GuardiansApp.service('constraintService', function($http) {
   var delConstraint = function(constraint){
 
   };
-$scope.approveConstraint = function(isApproverd ,contr){
+  var approveConstraint = function(isApproverd ,contr){
   };
   return {
     addConstraint:addConstraint,

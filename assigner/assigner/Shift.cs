@@ -9,17 +9,18 @@ namespace assigner
 
     public class ShiftType
     {
-        int id;
-        string name;
-        string description;
-        double score;
+        public int id;
+        public string name;
+        public string description;
+        public double score;
     }
 
     public class Shift
     {
-        int id;
-        DateTime date;
-        ShiftType type;
-        int soldierId;
+        public int id;
+        public int allocations;
+        public DateTime date;
+        public ShiftType type;
+        public int soldierId;
     }
 }
