@@ -14,6 +14,12 @@ GuardiansApp.service('menusService', function() {
       return sideBtnList;
   }
 
+  var clearSideBtn = function () {
+      sideBtnList = [];
+  }
+  var clearMainBtn = function () {
+      mainBtnList = [];
+  }
   var addMainBtn = function(name,btn) {
     var newObj = {};
     newObj.name = name;
@@ -29,7 +35,9 @@ GuardiansApp.service('menusService', function() {
     addSideBtn: addSideBtn,
     getSideBtn: getSideBtn,
     addMainBtn: addMainBtn,
-    getMainBtn: getMainBtn
+    getMainBtn: getMainBtn,
+    clearMainBtn:clearMainBtn,
+    clearSideBtn:clearSideBtn
   };
 
 });

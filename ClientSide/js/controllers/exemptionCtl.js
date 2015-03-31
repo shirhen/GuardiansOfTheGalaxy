@@ -1,6 +1,6 @@
-GuardiansApp.controller("exemptionCtl", ['$scope','userSerivce','exemptionService', 
-function($scope,userSerivce,exemptionService) {
-  var usr = userSerivce.getUser();
+GuardiansApp.controller("exemptionCtl", ['$scope','userService','exemptionService', 
+function($scope,userService,exemptionService) {
+  var usr = userService.getUser();
   var exempSer = exemptionService;
   $scope.addExemp = function(exemp){
   		return exempSer.addExemption(exemp);

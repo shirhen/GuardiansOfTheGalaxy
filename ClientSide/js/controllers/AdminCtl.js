@@ -1,6 +1,6 @@
-GuardiansApp.controller("adminCtl", ['$scope','userSerivce','constraintSerivce','exemptionSerivce','shiftSerivce',
-function($scope,$http,userSerivce,constraintSerivce,exemptionSerivce,shiftSerivce) {
-  var usr = userSerivce.getUser();
+GuardiansApp.controller("adminCtl", ['$scope','userService','constraintSerivce','exemptionSerivce','shiftSerivce',
+function($scope,$http,userService,constraintSerivce,exemptionSerivce,shiftSerivce) {
+  var usr = userService.getUser();
   $scope.getAllContr = function(){
   		//$http
   };
