@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="constraint_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="constraints">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="permanent" Type="int" Nullable="false" />
+          <Property Name="ranking" Type="int" Nullable="false" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" />
+          <Property Name="worker_id" Type="int" />
+          <Property Name="constraint_type_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="excemption">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="description" Type="nchar" MaxLength="10" />
+          <Property Name="start_date" Type="date" Nullable="false" />
+          <Property Name="end_date" Type="date" />
+        </EntityType>
+        <EntityType Name="rank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="score" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="date" Nullable="false" />
+          <Property Name="shift_type_id" Type="int" Nullable="false" />
+          <Property Name="worker_id" Type="int" Nullable="false" />
+          <Property Name="confirmed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shift_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="2000" />
+          <Property Name="score" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="shift_type_excemptions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shift_type_id" Type="int" Nullable="false" />
+          <Property Name="excemption_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="worker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="phone" Type="int" Nullable="false" />
+          <Property Name="rank_id" Type="int" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="worker_excemptions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="worker_id" Type="int" Nullable="false" />
+          <Property Name="excemption_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_constraints_ToConstraintType">
+          <End Role="constraint_type" Type="Self.constraint_type" Multiplicity="1" />
+          <End Role="constraints" Type="Self.constraints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="constraint_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="constraints">
+              <PropertyRef Name="constraint_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_constraints_ToWorker">
+          <End Role="worker" Type="Self.worker" Multiplicity="0..1" />
+          <End Role="constraints" Type="Self.constraints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="constraints">
+              <PropertyRef Name="worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shift_ToShiftType">
+          <End Role="shift_type" Type="Self.shift_type" Multiplicity="1" />
+          <End Role="shift" Type="Self.shift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shift_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift">
+              <PropertyRef Name="shift_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shift_ToWorker">
+          <End Role="worker" Type="Self.worker" Multiplicity="1" />
+          <End Role="shift" Type="Self.shift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift">
+              <PropertyRef Name="worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shiftTypeExcemptions_ToExcemption">
+          <End Role="excemption" Type="Self.excemption" Multiplicity="1" />
+          <End Role="shift_type_excemptions" Type="Self.shift_type_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="excemption">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift_type_excemptions">
+              <PropertyRef Name="excemption_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shiftTypeExcemptions_ToShiftType">
+          <End Role="shift_type" Type="Self.shift_type" Multiplicity="1" />
+          <End Role="shift_type_excemptions" Type="Self.shift_type_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shift_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift_type_excemptions">
+              <PropertyRef Name="shift_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_excemptions_ToExcemption">
+          <End Role="excemption" Type="Self.excemption" Multiplicity="1" />
+          <End Role="worker_excemptions" Type="Self.worker_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="excemption">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker_excemptions">
+              <PropertyRef Name="excemption_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_excemptions_ToWorker">
+          <End Role="worker" Type="Self.worker" Multiplicity="1" />
+          <End Role="worker_excemptions" Type="Self.worker_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker_excemptions">
+              <PropertyRef Name="worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_ToRank">
+          <End Role="rank" Type="Self.rank" Multiplicity="1" />
+          <End Role="worker" Type="Self.worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker">
+              <PropertyRef Name="rank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_ToRole">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="worker" Type="Self.worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="constraint_type" EntityType="Self.constraint_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="constraints" EntityType="Self.constraints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="excemption" EntityType="Self.excemption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rank" EntityType="Self.rank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shift" EntityType="Self.shift" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shift_type" EntityType="Self.shift_type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="shift_type_excemptions" EntityType="Self.shift_type_excemptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="worker" EntityType="Self.worker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="worker_excemptions" EntityType="Self.worker_excemptions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_constraints_ToConstraintType" Association="Self.FK_constraints_ToConstraintType">
+            <End Role="constraint_type" EntitySet="constraint_type" />
+            <End Role="constraints" EntitySet="constraints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_constraints_ToWorker" Association="Self.FK_constraints_ToWorker">
+            <End Role="worker" EntitySet="worker" />
+            <End Role="constraints" EntitySet="constraints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shift_ToShiftType" Association="Self.FK_shift_ToShiftType">
+            <End Role="shift_type" EntitySet="shift_type" />
+            <End Role="shift" EntitySet="shift" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shift_ToWorker" Association="Self.FK_shift_ToWorker">
+            <End Role="worker" EntitySet="worker" />
+            <End Role="shift" EntitySet="shift" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shiftTypeExcemptions_ToExcemption" Association="Self.FK_shiftTypeExcemptions_ToExcemption">
+            <End Role="excemption" EntitySet="excemption" />
+            <End Role="shift_type_excemptions" EntitySet="shift_type_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shiftTypeExcemptions_ToShiftType" Association="Self.FK_shiftTypeExcemptions_ToShiftType">
+            <End Role="shift_type" EntitySet="shift_type" />
+            <End Role="shift_type_excemptions" EntitySet="shift_type_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_excemptions_ToExcemption" Association="Self.FK_worker_excemptions_ToExcemption">
+            <End Role="excemption" EntitySet="excemption" />
+            <End Role="worker_excemptions" EntitySet="worker_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_excemptions_ToWorker" Association="Self.FK_worker_excemptions_ToWorker">
+            <End Role="worker" EntitySet="worker" />
+            <End Role="worker_excemptions" EntitySet="worker_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_ToRank" Association="Self.FK_worker_ToRank">
+            <End Role="rank" EntitySet="rank" />
+            <End Role="worker" EntitySet="worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_ToRole" Association="Self.FK_worker_ToRole">
+            <End Role="role" EntitySet="role" />
+            <End Role="worker" EntitySet="worker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="constraint_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="constraints" Relationship="Self.FK_constraints_ToConstraintType" FromRole="constraint_type" ToRole="constraints" />
+        </EntityType>
+        <EntityType Name="constraint">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="permanent" Type="Int32" Nullable="false" />
+          <Property Name="ranking" Type="Int32" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <Property Name="worker_id" Type="Int32" />
+          <Property Name="constraint_type_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="constraint_type" Relationship="Self.FK_constraints_ToConstraintType" FromRole="constraints" ToRole="constraint_type" />
+          <NavigationProperty Name="worker" Relationship="Self.FK_constraints_ToWorker" FromRole="constraints" ToRole="worker" />
+        </EntityType>
+        <EntityType Name="excemption">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="shift_type_excemptions" Relationship="Self.FK_shiftTypeExcemptions_ToExcemption" FromRole="excemption" ToRole="shift_type_excemptions" />
+          <NavigationProperty Name="worker_excemptions" Relationship="Self.FK_worker_excemptions_ToExcemption" FromRole="excemption" ToRole="worker_excemptions" />
+        </EntityType>
+        <EntityType Name="rank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="score" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="workers" Relationship="Self.FK_worker_ToRank" FromRole="rank" ToRole="worker" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="workers" Relationship="Self.FK_worker_ToRole" FromRole="role" ToRole="worker" />
+        </EntityType>
+        <EntityType Name="shift">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="shift_type_id" Type="Int32" Nullable="false" />
+          <Property Name="worker_id" Type="Int32" Nullable="false" />
+          <Property Name="confirmed" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="shift_type" Relationship="Self.FK_shift_ToShiftType" FromRole="shift" ToRole="shift_type" />
+          <NavigationProperty Name="worker" Relationship="Self.FK_shift_ToWorker" FromRole="shift" ToRole="worker" />
+        </EntityType>
+        <EntityType Name="shift_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="score" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="shifts" Relationship="Self.FK_shift_ToShiftType" FromRole="shift_type" ToRole="shift" />
+          <NavigationProperty Name="shift_type_excemptions" Relationship="Self.FK_shiftTypeExcemptions_ToShiftType" FromRole="shift_type" ToRole="shift_type_excemptions" />
+        </EntityType>
+        <EntityType Name="shift_type_excemptions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shift_type_id" Type="Int32" Nullable="false" />
+          <Property Name="excemption_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="excemption" Relationship="Self.FK_shiftTypeExcemptions_ToExcemption" FromRole="shift_type_excemptions" ToRole="excemption" />
+          <NavigationProperty Name="shift_type" Relationship="Self.FK_shiftTypeExcemptions_ToShiftType" FromRole="shift_type_excemptions" ToRole="shift_type" />
+        </EntityType>
+        <EntityType Name="worker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="phone" Type="Int32" Nullable="false" />
+          <Property Name="rank_id" Type="Int32" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="constraints" Relationship="Self.FK_constraints_ToWorker" FromRole="worker" ToRole="constraints" />
+          <NavigationProperty Name="rank" Relationship="Self.FK_worker_ToRank" FromRole="worker" ToRole="rank" />
+          <NavigationProperty Name="role" Relationship="Self.FK_worker_ToRole" FromRole="worker" ToRole="role" />
+          <NavigationProperty Name="shifts" Relationship="Self.FK_shift_ToWorker" FromRole="worker" ToRole="shift" />
+          <NavigationProperty Name="worker_excemptions" Relationship="Self.FK_worker_excemptions_ToWorker" FromRole="worker" ToRole="worker_excemptions" />
+        </EntityType>
+        <EntityType Name="worker_excemptions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="worker_id" Type="Int32" Nullable="false" />
+          <Property Name="excemption_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="excemption" Relationship="Self.FK_worker_excemptions_ToExcemption" FromRole="worker_excemptions" ToRole="excemption" />
+          <NavigationProperty Name="worker" Relationship="Self.FK_worker_excemptions_ToWorker" FromRole="worker_excemptions" ToRole="worker" />
+        </EntityType>
+        <Association Name="FK_constraints_ToConstraintType">
+          <End Role="constraint_type" Type="Self.constraint_type" Multiplicity="1" />
+          <End Role="constraints" Type="Self.constraint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="constraint_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="constraints">
+              <PropertyRef Name="constraint_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_constraints_ToWorker">
+          <End Role="worker" Type="Self.worker" Multiplicity="0..1" />
+          <End Role="constraints" Type="Self.constraint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="constraints">
+              <PropertyRef Name="worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shiftTypeExcemptions_ToExcemption">
+          <End Role="excemption" Type="Self.excemption" Multiplicity="1" />
+          <End Role="shift_type_excemptions" Type="Self.shift_type_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="excemption">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift_type_excemptions">
+              <PropertyRef Name="excemption_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_excemptions_ToExcemption">
+          <End Role="excemption" Type="Self.excemption" Multiplicity="1" />
+          <End Role="worker_excemptions" Type="Self.worker_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="excemption">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker_excemptions">
+              <PropertyRef Name="excemption_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_ToRank">
+          <End Role="rank" Type="Self.rank" Multiplicity="1" />
+          <End Role="worker" Type="Self.worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker">
+              <PropertyRef Name="rank_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_ToRole">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="worker" Type="Self.worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shift_ToShiftType">
+          <End Role="shift_type" Type="Self.shift_type" Multiplicity="1" />
+          <End Role="shift" Type="Self.shift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shift_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift">
+              <PropertyRef Name="shift_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shift_ToWorker">
+          <End Role="worker" Type="Self.worker" Multiplicity="1" />
+          <End Role="shift" Type="Self.shift" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift">
+              <PropertyRef Name="worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_shiftTypeExcemptions_ToShiftType">
+          <End Role="shift_type" Type="Self.shift_type" Multiplicity="1" />
+          <End Role="shift_type_excemptions" Type="Self.shift_type_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="shift_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="shift_type_excemptions">
+              <PropertyRef Name="shift_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_worker_excemptions_ToWorker">
+          <End Role="worker" Type="Self.worker" Multiplicity="1" />
+          <End Role="worker_excemptions" Type="Self.worker_excemptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="worker">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="worker_excemptions">
+              <PropertyRef Name="worker_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="constraint_type" EntityType="Self.constraint_type" />
+          <EntitySet Name="constraints" EntityType="Self.constraint" />
+          <EntitySet Name="excemptions" EntityType="Self.excemption" />
+          <EntitySet Name="ranks" EntityType="Self.rank" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="shifts" EntityType="Self.shift" />
+          <EntitySet Name="shift_type" EntityType="Self.shift_type" />
+          <EntitySet Name="shift_type_excemptions" EntityType="Self.shift_type_excemptions" />
+          <EntitySet Name="workers" EntityType="Self.worker" />
+          <EntitySet Name="worker_excemptions" EntityType="Self.worker_excemptions" />
+          <AssociationSet Name="FK_constraints_ToConstraintType" Association="Self.FK_constraints_ToConstraintType">
+            <End Role="constraint_type" EntitySet="constraint_type" />
+            <End Role="constraints" EntitySet="constraints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_constraints_ToWorker" Association="Self.FK_constraints_ToWorker">
+            <End Role="worker" EntitySet="workers" />
+            <End Role="constraints" EntitySet="constraints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shiftTypeExcemptions_ToExcemption" Association="Self.FK_shiftTypeExcemptions_ToExcemption">
+            <End Role="excemption" EntitySet="excemptions" />
+            <End Role="shift_type_excemptions" EntitySet="shift_type_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_excemptions_ToExcemption" Association="Self.FK_worker_excemptions_ToExcemption">
+            <End Role="excemption" EntitySet="excemptions" />
+            <End Role="worker_excemptions" EntitySet="worker_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_ToRank" Association="Self.FK_worker_ToRank">
+            <End Role="rank" EntitySet="ranks" />
+            <End Role="worker" EntitySet="workers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_ToRole" Association="Self.FK_worker_ToRole">
+            <End Role="role" EntitySet="roles" />
+            <End Role="worker" EntitySet="workers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shift_ToShiftType" Association="Self.FK_shift_ToShiftType">
+            <End Role="shift_type" EntitySet="shift_type" />
+            <End Role="shift" EntitySet="shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shift_ToWorker" Association="Self.FK_shift_ToWorker">
+            <End Role="worker" EntitySet="workers" />
+            <End Role="shift" EntitySet="shifts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_shiftTypeExcemptions_ToShiftType" Association="Self.FK_shiftTypeExcemptions_ToShiftType">
+            <End Role="shift_type" EntitySet="shift_type" />
+            <End Role="shift_type_excemptions" EntitySet="shift_type_excemptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_worker_excemptions_ToWorker" Association="Self.FK_worker_excemptions_ToWorker">
+            <End Role="worker" EntitySet="workers" />
+            <End Role="worker_excemptions" EntitySet="worker_excemptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="constraint_type">
+            <EntityTypeMapping TypeName="Model.constraint_type">
+              <MappingFragment StoreEntitySet="constraint_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="constraints">
+            <EntityTypeMapping TypeName="Model.constraint">
+              <MappingFragment StoreEntitySet="constraints">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="permanent" ColumnName="permanent" />
+                <ScalarProperty Name="ranking" ColumnName="ranking" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+                <ScalarProperty Name="constraint_type_id" ColumnName="constraint_type_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="excemptions">
+            <EntityTypeMapping TypeName="Model.excemption">
+              <MappingFragment StoreEntitySet="excemption">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ranks">
+            <EntityTypeMapping TypeName="Model.rank">
+              <MappingFragment StoreEntitySet="rank">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="Model.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shifts">
+            <EntityTypeMapping TypeName="Model.shift">
+              <MappingFragment StoreEntitySet="shift">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="shift_type_id" ColumnName="shift_type_id" />
+                <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+                <ScalarProperty Name="confirmed" ColumnName="confirmed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shift_type">
+            <EntityTypeMapping TypeName="Model.shift_type">
+              <MappingFragment StoreEntitySet="shift_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="shift_type_excemptions">
+            <EntityTypeMapping TypeName="Model.shift_type_excemptions">
+              <MappingFragment StoreEntitySet="shift_type_excemptions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="shift_type_id" ColumnName="shift_type_id" />
+                <ScalarProperty Name="excemption_id" ColumnName="excemption_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workers">
+            <EntityTypeMapping TypeName="Model.worker">
+              <MappingFragment StoreEntitySet="worker">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="rank_id" ColumnName="rank_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="worker_excemptions">
+            <EntityTypeMapping TypeName="Model.worker_excemptions">
+              <MappingFragment StoreEntitySet="worker_excemptions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="worker_id" ColumnName="worker_id" />
+                <ScalarProperty Name="excemption_id" ColumnName="excemption_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

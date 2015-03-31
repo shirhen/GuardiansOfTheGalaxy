@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GuardiansOfTheGalaxy</RootNamespace>
-    <AssemblyName>guardians-of-the-galaxy</AssemblyName>
+    <AssemblyName>GuardiansOfTheGalaxy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
     <UseIISExpress>true</UseIISExpress>
@@ -71,33 +71,98 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\constraint.cs" />
-    <Compile Include="Entities\constraint_type.cs" />
-    <Compile Include="Entities\excemption.cs" />
+    <Compile Include="DAL\Entities\constraint.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\constraint_type.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\excemption.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\GuardsModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GuardsModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\GuardsModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\GuardsModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GuardsModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\rank.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\role.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\shift.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\shift_type.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\shift_type_excemptions.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\worker.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\Entities\worker_excemptions.cs">
+      <DependentUpon>GuardsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PB.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Service\Guardians.svc.cs">
       <DependentUpon>Guardians.svc</DependentUpon>
     </Compile>
-    <Compile Include="EntityFramework\GuardsDB.cs" />
     <Compile Include="Service\IGuardians.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\rank.cs" />
-    <Compile Include="Entities\shift.cs" />
-    <Compile Include="Entities\shift_type.cs" />
-    <Compile Include="Entities\shift_type_excemptions.cs" />
-    <Compile Include="Entities\worker.cs" />
-    <Compile Include="Entities\worker_excemptions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <EntityDeploy Include="DAL\Entities\GuardsModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GuardsModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DAL\Entities\GuardsModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GuardsModel.edmx</DependentUpon>
+      <LastGenOutput>GuardsModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DAL\Entities\GuardsModel.edmx.diagram">
+      <DependentUpon>GuardsModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DAL\Entities\GuardsModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>GuardsModel.edmx</DependentUpon>
+      <LastGenOutput>GuardsModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
