@@ -1,1 +1,10 @@
-<div>צפה בפטורים</div>
+<div ng-controller="exemptionCtl" onload="getExemp()"> 
+	<ul>
+		<li ng-repeat="exemp in exempList">
+			<p>{{exemp.name}}</p>
+			<p>{{exemp.startDate}}</p>
+			<p>{{exemp.endDate}}</p>
+			<p>{{exemp.isApproved}}</p>
+		</li>
+	</ul>
+</div>
