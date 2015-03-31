@@ -20,8 +20,8 @@ function($scope,$window,MenusService,userService,$location) {
   };
   $scope.exemptionBtn = function(){
     MenusService.clearSideBtn();
-  	MenusService.addSideBtn("הזן פטור");
-    MenusService.addSideBtn("צפה בפטורים");
+  	MenusService.addSideBtn("הזן פטור","/exemptions/insert");
+    MenusService.addSideBtn("צפה בפטורים","/exemptions/watch");
     $scope.sBtns = MenusService.getSideBtn();
     $location.path('/exemptions');
     //$window.location.href = '/exemptions';
