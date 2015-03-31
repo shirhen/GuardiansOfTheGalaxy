@@ -37,5 +37,11 @@ namespace GuardiansOfTheGalaxy.DAL.Entities
         public virtual ICollection<shift> shifts { get; set; }
 
         public virtual ICollection<worker_excemptions> worker_excemptions { get; set; }
+
+        public int numberOfShifts;
+        public int maxShifts;
+        public int scoreOfShifts;
+        public int minNumShifts, maxNumShifts;
+        public int minScoreShifts, maxScoreShifts;
     }
 }

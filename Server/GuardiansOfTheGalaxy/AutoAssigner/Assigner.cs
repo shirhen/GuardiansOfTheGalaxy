@@ -38,6 +38,20 @@ namespace GuardiansOfTheGalaxy
 		    return true;
 	    }
 
+        public bool canAttendShift(worker worker, workShift shift)
+        {
+            //if() // has ptor from this type of shifts
+            //{
+            //return false;
+            //}
+
+            //if() //has excemption
+            //{
+            //return false;
+            //}
+            return true;
+        }
+
         public bool assign (int shift, int soldierNum){
 		    if( shift == shifts.Capacity ){
 			    return true;
@@ -63,17 +77,24 @@ namespace GuardiansOfTheGalaxy
 		    }
             return assign(shift, soldierNum + 1);
 	    }
+        
         public void getPotential()
         {
             foreach ( worker temp in PB.GuardiansDB.workers){
                 temp.numberOfShifts=0;
-                temp.maxShifts = 0;
+                temp.maxShifts = 2;
                 temp.scoreOfShifts = 0;
                 temp.minNumShifts = 0; 
-                temp.maxNumShifts = 0;
+                temp.maxNumShifts = 2;
                 temp.minScoreShifts = 0;
-                temp.maxScoreShifts = 0; 
+                temp.maxScoreShifts = 2;
+                potential.Add(temp, temp);
             }
+        }
+
+        public void fillPotentialPerShift()
+        {
+
         }
     }
 }
