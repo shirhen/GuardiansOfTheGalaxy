@@ -95,6 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GuardsModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAL\Entities\GuardsDB.cs" />
     <Compile Include="DAL\Entities\rank.cs">
       <DependentUpon>GuardsModel.tt</DependentUpon>
     </Compile>

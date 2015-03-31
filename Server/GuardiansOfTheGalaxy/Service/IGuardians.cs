@@ -1,4 +1,5 @@
-﻿using GuardiansOfTheGalaxy.Properties;
+﻿using GuardiansOfTheGalaxy.DAL.Entities;
+using GuardiansOfTheGalaxy.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,14 @@ namespace GuardiansOfTheGalaxy
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
             UriTemplate = "api/worker/{id}")]
-        string GetWorker(string id);
+        worker GetWorker(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "api/search/worker/{param}/{value}")]
+        IQueryable<worker> SearchWorker(string param, string value);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
