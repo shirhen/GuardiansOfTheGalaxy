@@ -11,18 +11,25 @@ namespace GuardiansOfTheGalaxy
     // NOTE: In order to launch WCF Test Client for testing this service, please select Guardians.svc or Guardians.svc.cs at the Solution Explorer and start debugging.
     public class Guardians : IGuardians
     {
-        //public void DoWork()
-        //{
-        //}
-
-        public string XMLData(string id)
+        public string GetBoard(string id)
         {
             return "kaka" + id;
         }
 
-        public string JSONData(string id)
+
+        public string GetWorker(string id)
         {
-            return "kaka" + id;
+            throw new NotImplementedException();
+        }
+
+        public string InitDB()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DropDB()
+        {
+            throw new NotImplementedException();
         }
     }
 }

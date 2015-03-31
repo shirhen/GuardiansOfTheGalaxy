@@ -1,12 +1,15 @@
-GuardiansApp.controller("shiftCtl", ['$scope',$http, userService,function($scope) {
-  var usr = userSerivce.getUser();
-  $scope.getShiftsByUser = function(){
-
-  };
-  $scope.getShiftsByDate = function(date){
-
-  };
-  $scope.getAllShifts = function(){
-  	
-  };
-}]);
+GuardiansApp.controller("shiftCtl", ['$scope','userService','shiftService',
+	function($scope,userService,shiftService) {
+	  	var usr = userService.getUser();
+	  	
+		$scope.getShiftsByUser = function(){
+			return shiftService.getShiftsByUser(usr);
+	  	};
+		$scope.getShiftsByDate = function(date){
+			return shiftService.getShiftsByDate(date);
+		};
+  		$scope.getAllShifts = function(){
+	  		return shiftService.getAllShifts();
+  	   	};
+	}
+]);

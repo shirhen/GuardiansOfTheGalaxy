@@ -1,3 +1,7 @@
-GuardiansApp.controller("SideMenuCtl", ['$scope',MenusService, function($scope) {
-  $scope.btns = MenusService.getBtns();
-}]);
+GuardiansApp.controller("sideMenuCtl", ['$scope','menusService', 
+	function($scope,MenusService) {
+		$scope.btns = MenusService.getSideBtn();
+		$scope.$watchCollection('btns', function() {
+		});
+	}	
+]);

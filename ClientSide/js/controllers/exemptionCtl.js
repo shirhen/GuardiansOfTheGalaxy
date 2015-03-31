@@ -1,17 +1,18 @@
-GuardiansApp.controller("exemptionCtl", ['$scope',$http,userSerivce,exemptionService function($scope) {
-  var usr = userSerivce.getUser();
+GuardiansApp.controller("exemptionCtl", ['$scope','userService','exemptionService', 
+function($scope,userService,exemptionService) {
+  var usr = userService.getUser();
   var exempSer = exemptionService;
   $scope.addExemp = function(exemp){
-  		exempSer.addExemption(exemp);
+  		return exempSer.addExemption(exemp);
   };
   $scope.getExemp = function(){
-      exempSer.getExemption(usr);
+      return exempSer.getExemption(usr);
   };
   $scope.editExemp = function(exemp){
-      exempSer.editExemption(exemp);
+      return exempSer.editExemption(exemp);
   };
   $scope.delExemp = function(exemp){
-      exempSer.delExemption(exemp);
+      return exempSer.delExemption(exemp);
   };
   
 }]);

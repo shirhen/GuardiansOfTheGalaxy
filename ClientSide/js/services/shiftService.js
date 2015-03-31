@@ -10,12 +10,17 @@ GuardiansApp.service('shiftService', function($http) {
     //$http
   };
 
+  var approveBoard = function(isApproverd){//TODO:need to send something more?
+
+  };
+
+  var startAssign = function(){}; //TODO: what to send
   return {
-    addExemption:addExemption,
-    getExemption:getExemptionsByUser,
-    getAllExemption:getAllExemptions,
-    editExemption:editExemption,
-    delExemption:delExemption
+    getAllShifts:getAllShifts,
+    getShiftsByDate:getShiftsByDate,
+    getShiftsByUser:getShiftsByUser,
+    approveBoard:approveBoard,
+    startAssign:startAssign
   };
 
 });

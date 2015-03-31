@@ -1,8 +1,10 @@
 GuardiansApp.service('userService', function($http) {
-  var usr;
+  var usr = {};
   var getUser = function() {
     //TODO: HOW?!?
-    //usr = 
+    //usr = {}; 
+    usr.role = "soldier";
+    usr.id="1234567";
   };
 
   var isAdmin = function(){

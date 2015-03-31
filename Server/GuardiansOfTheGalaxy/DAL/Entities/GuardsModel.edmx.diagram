@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5aafe4c84e264911b4a145d0e4d23e87" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.constraint_type" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.constraint" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.excemption" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.rank" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.role" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.shift" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.shift_type" Width="1.5" PointX="6" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.shift_type_excemptions" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.worker" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.worker_excemptions" Width="1.5" PointX="8.25" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_constraints_ToConstraintType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_constraints_ToWorker" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_shiftTypeExcemptions_ToExcemption" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_worker_excemptions_ToExcemption" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_worker_ToRank" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_worker_ToRole" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_shift_ToShiftType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_shift_ToWorker" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_shiftTypeExcemptions_ToShiftType" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_worker_excemptions_ToWorker" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

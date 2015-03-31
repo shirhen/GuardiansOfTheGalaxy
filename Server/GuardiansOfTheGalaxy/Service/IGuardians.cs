@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuardiansOfTheGalaxy.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,21 +13,32 @@ namespace GuardiansOfTheGalaxy
     [ServiceContract]
     public interface IGuardians
     {
-        //[OperationContract]
-        //void DoWork();
-
         [OperationContract]
         [WebInvoke(Method = "GET",
-            ResponseFormat = WebMessageFormat.Xml,
+            ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
-            UriTemplate = "xml/{id}")]
-        string XMLData(string id);
+            UriTemplate = "api/board/{id}")]
+        string GetBoard(string id);
 
         [OperationContract]
         [WebInvoke(Method = "GET",
             ResponseFormat = WebMessageFormat.Json,
             BodyStyle = WebMessageBodyStyle.Wrapped,
-            UriTemplate = "json/{id}")]
-        string JSONData(string id);
+            UriTemplate = "api/worker/{id}")]
+        string GetWorker(string id);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "api/db/init")]
+        string InitDB();
+
+        [OperationContract]
+        [WebInvoke(Method = "GET",
+            ResponseFormat = WebMessageFormat.Json,
+            BodyStyle = WebMessageBodyStyle.Wrapped,
+            UriTemplate = "api/db/drop")]
+        string DropDB();
     }
 }
