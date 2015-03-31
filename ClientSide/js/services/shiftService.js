@@ -1,12 +1,12 @@
 GuardiansApp.service('shiftService', function($http) {
 
-  var getShiftsByUser = function(exemption) {
+  var getShiftsByUser = function(user) {
     //$http
   };
-  var getShiftsByDate= function(exemption) {
+  var getShiftsByDate= function(date) {
     //$http
   };
-  var getAllShifts= function(exemption) {
+  var getAllShifts= function() {
     //$http
   };
 

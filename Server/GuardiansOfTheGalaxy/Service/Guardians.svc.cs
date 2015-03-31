@@ -1,6 +1,8 @@
-﻿using System;
+﻿using GuardiansOfTheGalaxy.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
@@ -13,23 +15,50 @@ namespace GuardiansOfTheGalaxy
     {
         public string GetBoard(string id)
         {
-            return "kaka" + id;
+            return "kaka: " + id;
         }
 
 
-        public string GetWorker(string id)
+        public worker GetWorker(string id)
         {
-            throw new NotImplementedException();
+            return PB.DB.workers.Find(id);
         }
 
         public string InitDB()
         {
-            throw new NotImplementedException();
+            try
+            {
+                role rAdmin = new role();
+                rAdmin.name = "admin";
+                role rUser = new role();
+                rUser.name = "user";
+
+                PB.DB.roles.Add(rAdmin);
+                PB.DB.roles.Add(rUser);
+
+                return "ok" + PB.DB.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+                throw;
+            }
         }
 
         public string DropDB()
         {
             throw new NotImplementedException();
         }
-    }
+
+
+        public IQueryable<worker> SearchWorker(string param, string value)
+        {
+            Type t = typeof(worker);
+            PropertyInfo propInfo = t.GetProperty(param);
+            worker w = new worker();
+            Object o = propInfo.GetValue(w);
+            //propInfo.GetValue(x).ToString()
+            return PB.DB.workers.Where(x => propInfo.GetValue(x).ToString() == value);
+        }
+    };
 }

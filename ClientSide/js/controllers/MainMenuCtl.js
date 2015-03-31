@@ -3,20 +3,27 @@ function($scope,$window,MenusService,userService,$location) {
   
   $scope.constraintBtn = function(){
     MenusService.clearSideBtn();
-		MenusService.addSideBtn("הזן אילוץ");
-    MenusService.addSideBtn("צפה באילוצים");
-    //$location.path() == '/constraints';
+		MenusService.addSideBtn("הזן אילוץ","/constraints/insert");
+    MenusService.addSideBtn("צפה באילוצים","/constraints/watch");
+    $scope.sBtns = MenusService.getSideBtn();
+    //angular.element($('#sideMenu')).scope().update();
+    $location.path('/constraints');
+
     //$location.replace();
   };
   $scope.shiftBtn = function(){
     MenusService.clearSideBtn();
     MenusService.addSideBtn("לוח תורנויות");
+    $scope.sBtns = MenusService.getSideBtn();
+    $location.path("/shift");
     //$window.location.href = '/shift';
   };
   $scope.exemptionBtn = function(){
     MenusService.clearSideBtn();
-  	MenusService.addSideBtn("הזן פטור");
-    MenusService.addSideBtn("צפה בפטורים");
+  	MenusService.addSideBtn("הזן פטור","/exemptions/insert");
+    MenusService.addSideBtn("צפה בפטורים","/exemptions/watch");
+    $scope.sBtns = MenusService.getSideBtn();
+    $location.path('/exemptions');
     //$window.location.href = '/exemptions';
   };
 

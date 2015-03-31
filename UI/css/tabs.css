@@ -86,7 +86,8 @@
 .icon::before {
 	z-index: 10;
 	display: inline-block;
-	margin: 0 0.4em 0 0;
+	margin: 0 -3.5em 0 0;
+    <!--margin: 0 0.4em 0 0;-->
 	vertical-align: middle;
 	text-transform: none;
 	font-weight: normal;
@@ -145,9 +146,12 @@
 }
 
 .content-wrap section {
+    display: inline-block;
+    float: left;
 	display: none;
 	margin: 0 auto;
 	padding: 1em;
+    width: 80%;
 	max-width: 1200px;
 	text-align: center;
 }

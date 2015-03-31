@@ -11,6 +11,9 @@ var GuardiansApp = angular.module("GuardiansApp",['ngRoute'])
   }).when('/exemptions', {
     templateUrl: '/views/exemption-partial.html',
     controller: 'exemptionCtl'
+  }).when('/exemptions/watch', {
+    templateUrl: '/views/exemption-watch-partial.html',
+    controller: 'exemptionCtl'
   }).
       otherwise({
         redirectTo: '/shift'

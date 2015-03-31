@@ -15,42 +15,68 @@
 		<link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
   		<script src="js/modernizr.custom.js"></script>
 	</head>
-	<body>
+	<body onload="setFirstTab">
 		<svg class="hidden">
 			<defs>
 				<path id="tabshape" d="M80,60C34,53.5,64.417,0,0,0v60H80z"/>
 			</defs>
 		</svg>
+
 		<div class="container">
 			<section>
+                <!-- Tabs -->
 				<div class="tabs tabs-style-underline">
 					<nav>
                         <div id="Logo">
                             <h2>מערכת תורנויות</h2>
                         </div>
-						<ul>
-							<li><a href="#section-underline-1" class="icon icon-gift"><span>פטורים</span></a></li>
-							<li><a href="#section-underline-2" class="icon icon-plane"><span>אילוצים</span></a></li>
-							<li><a href="#section-underline-3" class="icon icon-date"><span>תורנויות</span></a></li>
+						<ul id="mainTabs">
+							<li><a href="#section-side-menu-Ptor" class="icon icon-gift"><span>פטורים</span></a></li>
+							<li><a href="#section-side-menu-Ilutz" class="icon icon-plane"><span>אילוצים</span></a></li>
+							<li><a href="#section-side-menu-Toranut" class="icon icon-date"><span>תורנויות</span></a></li>
 						</ul>
 					</nav>
-					<div class="content-wrap">
-						<section id="section-underline-1">
-                            <p>פטורים</p>
+                                        
+                    <!-- Side Menu -->
+                    
+                    <div class="content-wrap" id="sideMenu">
+                        <section id="section-side-menu-Ptor">
+                            <ul>
+                                <li><a href="#section-underline-Ptor"><span>1פטורים</span></a></li>
+                                <li><a href="#section-underline-Ptor"><span>1פטורים</span></a></li>
+                            </ul>
                         </section>
-						<section id="section-underline-2">
-                            <p>אילוצים</p>
+                        <section id="section-side-menu-Ilutz">
+                            <ul>
+                                <li><a href="#section-underline-Ilutz"><span>2אילוצים</span></a></li>
+                                <li><a href="#section-underline-Ilutz"><span>2אילוצים</span></a></li>
+                            </ul>
                         </section>
-						<section id="section-underline-3">
-                            <p>תורנויות</p>
+                        <section id="section-side-menu-Toranut">
+                            <ul>
+                                <li><a href="#section-underline-Toranut"><span>תורנויות3</span></a></li>
+                                <li><a href="#section-underline-Toranut"><span>תורנויות3</span></a></li>
+                            </ul>
                         </section>
-					</div><!-- /content -->
+                        
+                        <!-- Tabs Content -->
+                        <div class="content-wrap">
+                            <section id="section-underline-Ptor">
+                                <p>פטורים</p>
+                            </section>
+                            <section id="section-underline-Ilutz">
+                                <p>אילוצים</p>
+                            </section>
+                            <section id="section-underline-Toranut">
+                                <p>תורנויות</p>
+                            </section>
+                        </div><!-- /content -->
+                    </div> <!-- /Side Menu -->
+        
+
 				</div><!-- /tabs -->
 			</section>
 		</div><!-- /container -->
-        
-        <!-- Side Menu -->
-        <div class="sideMenu"></div>
         
 		<script src="js/cbpFWTabs.js"></script>
 		<script>
@@ -61,6 +87,12 @@
 				});
 
 			})();
+            
+            <!-- I Wrote -->
+            (function setFirstTab() {
+                //this.getElementById("mainTabs")[2].
+				
+				});
 		</script>
 	</body>
 </html>

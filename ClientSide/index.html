@@ -28,8 +28,8 @@
 
   </head>
 
-  <body>
-    <div id="mainMenu" ng-controller="mainMenuCtl">
+  <body onload="setFirstTab">
+    <div id="mainMenu" ng-controller="mainMenuCtl" class="container">
       <div class="tabs tabs-style-underline">
           <nav>
               <div id="Logo">
@@ -37,13 +37,13 @@
               </div>
             <ul ng-if="!getIfAdmin()">
               <li>
-                <a class="icon icon-gift"  href="/exemptions" ng-click="exemptionBtn()"><span>פטורים</span></a>
+                <a class="icon icon-gift"  href="" ng-click="exemptionBtn()"><span>פטורים</span></a>
               </li>
               <li>
-                <a  class="icon icon-plane" href="/constraints" ng-click="constraintBtn()"><span>אילוצים</span></a>
+                <a  class="icon icon-plane" href="" ng-click="constraintBtn()"><span>אילוצים</span></a>
               </li>
               <li>
-                <a  class="icon icon-date"><span>תורנויות</span></a>
+                <a  class="icon icon-date" href="" ng-click="shiftBtn()"><span>תורנויות</span></a>
               </li>
             </ul>
             <ul ng-if="getIfAdmin()">
@@ -59,13 +59,22 @@
             </ul>
           </nav>
       </div>
+      <div id="sideMenu" class="tabs tabs-style-underline">
+        <section>
+        <ul style="float:right">
+          <li ng-repeat="sideM in sBtns"><a href="{{sideM.link}}"><span>{{sideM.name}}</span></a></li>
+        </ul>
+      </section>
+      </div>
     </div>
-    <div ng-controller="sideMenuCtl" ng-bind="btns">
+<!-- in the future
+    <div id="sideMenu" ng-controller="sideMenuCtl">
+      {{tryb}}
         <ul>
           <li ng-repeat="sideM in btns">{{sideM.name}}</li>
         </ul>
     </div>
-
+-->
     <div ng-view></div>
     <!-- <div ng-controller="shiftCtl">
       <p>The ID is {{greeting.id}}</p>

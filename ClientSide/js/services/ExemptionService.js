@@ -15,7 +15,7 @@ GuardiansApp.service('exemptionService', function($http) {
   var delExemption = function(exemption){
 
   };
-  $scope.approveExemption = function(isApproverd ,exemp){
+  var approveExemption = function(isApproverd ,exemp){
 
   };
   return {
