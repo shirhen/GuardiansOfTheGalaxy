@@ -13,7 +13,7 @@ namespace GuardiansOfTheGalaxy
         SortedList<int, SortedList<worker, worker>> potentialPerShift;
         SortedList<int, SortedList<worker, worker>> assignment;
         SortedList<worker, worker> potential;
-
+        
 
         public bool canTakeShift(worker worker, workShift shift)
         {
@@ -28,6 +28,11 @@ namespace GuardiansOfTheGalaxy
 		    }
 
             //if(){	// in the same calendar week
+
+            //}
+
+            //if() //not more than the percentage of ptors
+            //{
 
             //}
 		    return true;
@@ -57,8 +62,18 @@ namespace GuardiansOfTheGalaxy
                 shifts[shift].allocations++;
 		    }
             return assign(shift, soldierNum + 1);
-
 	    }
-
+        public void getPotential()
+        {
+            foreach ( worker temp in PB.GuardiansDB.workers){
+                temp.numberOfShifts=0;
+                temp.maxShifts = 0;
+                temp.scoreOfShifts = 0;
+                temp.minNumShifts = 0; 
+                temp.maxNumShifts = 0;
+                temp.minScoreShifts = 0;
+                temp.maxScoreShifts = 0; 
+            }
+        }
     }
 }
