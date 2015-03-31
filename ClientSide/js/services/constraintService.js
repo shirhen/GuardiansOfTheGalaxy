@@ -15,13 +15,15 @@ GuardiansApp.service('constraintService', function($http) {
   var delConstraint = function(constraint){
 
   };
-
+$scope.approveConstraint = function(isApproverd ,contr){
+  };
   return {
     addConstraint:addConstraint,
     getConstraints:getConstraintsByUser,
     getAllConstraints:getAllConstraints,
     editConstraint:editConstraint,
-    delConstraint:delConstraint
+    delConstraint:delConstraint,
+    approveConstraint:approveConstraint
   };
 
 });

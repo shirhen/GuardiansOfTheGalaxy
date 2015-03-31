@@ -1,4 +1,4 @@
-GuardiansApp.service('MenusService', function() {
+GuardiansApp.service('menusService', function() {
   var sideBtnList = [];
   var mainBtnList = [];
   var addSideBtn = function(name, btn,viewLink,controller) {
