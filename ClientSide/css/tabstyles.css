@@ -200,7 +200,12 @@
 .tabs-style-underline nav a span {
 	font-weight: 700;
 }
-
+.list-no-style {
+	  list-style-type: none;
+}
+.to-center {
+	  text-align: center;
+}
 /*****************************/
 /* Triangle and line */
 /*****************************/
